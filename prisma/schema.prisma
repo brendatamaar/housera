@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+   output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  username      String?   @unique
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  first_name    String?   @db.VarChar(255)
+  last_name     String?   @db.VarChar(255)
+  image         String?
+  password      String?
+  resetToken    String?
+  emailToken    String?
+  update        String?
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
