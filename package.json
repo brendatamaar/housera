@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lucia-auth/adapter-prisma": "^3.0.2",
     "@prisma/client": "^5.8.1",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "jsonwebtoken": "^8.5.1",
     "loglevel": "^1.8.0",
     "loglevel-plugin-prefix": "^0.8.4",
+    "lucia": "^2.7.6",
     "next": "14.0.4",
     "next-absolute-url": "^1.2.2",
     "next-auth": "^4.10.3",
@@ -27,7 +29,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^8.5.9",
-    "@types/node": "^20",
+    "@types/node": "12",
     "@types/nodemailer": "^6.4.6",
     "@types/react": "^18",
     "@types/react-dom": "^18",

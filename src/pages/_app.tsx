@@ -1,16 +1,16 @@
-import type { AppProps } from "next/app";
-import { SessionProvider } from "next-auth/react";
-import "../styles/globals.css";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+import "@/styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+import Head from "next/head";
+
+import type { AppProps } from "next/app";
+
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <SessionProvider session={pageProps.session}>
-      <Component {...pageProps} />
-      <ToastContainer />
-    </SessionProvider>
+    <>
+      <Head>
+        <title>Username & password auth with Lucia</title>
+      </Head>
+      <Component {...pageProps} />;
+    </>
   );
 }
-
-export default MyApp;
