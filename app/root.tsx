@@ -1,38 +1,72 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction } from "@remix-run/node";
 import {
 	Links,
-	LiveReload,
 	Meta,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	isRouteErrorResponse,
+	useRouteError,
 } from "@remix-run/react";
-import stylesheet from "~/tailwind.css";
 
-export const links: LinksFunction = () => [
-	{ rel: "stylesheet", href: stylesheet },
-	...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-];
+import { GlobalPendingIndicator } from "@/components/global-pending-indicator";
+import { Header } from "@/components/header";
+import {
+	ThemeSwitcherSafeHTML,
+	ThemeSwitcherScript,
+} from "@/components/theme-switcher";
 
-export default function App() {
+import "./globals.css";
+
+function App({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang='en'>
+		<ThemeSwitcherSafeHTML lang="en">
 			<head>
-				<meta charSet='utf-8' />
-				<meta
-					name='viewport'
-					content='width=device-width, initial-scale=1'
-				/>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<Meta />
 				<Links />
+				<ThemeSwitcherScript />
 			</head>
 			<body>
-				<Outlet />
+				<GlobalPendingIndicator />
+				<Header />
+				{children}
 				<ScrollRestoration />
 				<Scripts />
-				<LiveReload />
 			</body>
-		</html>
+		</ThemeSwitcherSafeHTML>
+	);
+}
+
+export default function Root() {
+	return (
+		<App>
+			<Outlet />
+		</App>
+	);
+}
+
+export function ErrorBoundary() {
+	const error = useRouteError();
+	let status = 500;
+	let message = "An unexpected error occurred.";
+	if (isRouteErrorResponse(error)) {
+		status = error.status;
+		switch (error.status) {
+			case 404:
+				message = "Page Not Found";
+				break;
+		}
+	} else {
+		console.error(error);
+	}
+
+	return (
+		<App>
+			<div className="container prose py-8">
+				<h1>{status}</h1>
+				<p>{message}</p>
+			</div>
+		</App>
 	);
 }
