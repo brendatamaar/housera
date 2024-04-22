@@ -1,5 +1,7 @@
+import { PropsWithChildren } from "react";
+import { TbDotsVertical, TbPlus } from "react-icons/tb";
+
 import { LaptopIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { Link } from "@remix-run/react";
 import * as React from "react";
 import { useHydrated } from "remix-utils/use-hydrated";
 
@@ -17,7 +19,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function Header() {
+export const Header = ({ children }: PropsWithChildren) => {
 	const hydrated = useHydrated();
 	const [, rerender] = React.useState({});
 	const setTheme = React.useCallback((theme: string) => {
@@ -27,65 +29,82 @@ export function Header() {
 	const theme = getTheme();
 
 	return (
-		<header className="flex items-center justify-between px-4 py-2 md:py-4">
-			<div className="flex items-center space-x-4">
-				<Link className="flex items-center space-x-2" to="/">
-					{/* <HomeIcon className="h-6 w-6" /> */}
-					<span className="text-lg font-bold">shadcn</span>
-				</Link>
+		<div className="border-b-[1px] border-stone-200 p-2 px-4">
+			<div className="flex items-center justify-between">
+				<div className="flex gap-2 items-center">{children}</div>
+				<div className="flex items-center gap-2">
+					<div className="flex row-reverse">
+						<div>
+							{/* <img
+                    alt="any"
+                    src={`/people/${name}.png`}
+                    width={24}
+                    height={24}
+                    className="rounded-full border border-white/80"
+                  /> */}
+						</div>
+					</div>
+					<button className="border border-stone-200 shadow-sm rounded-full w-[24px] h-[24px] flex justify-center items-center">
+						<TbPlus className="text-sm" />
+					</button>
+					<button className="rounded-full w-[24px] h-[24px] flex justify-center items-center">
+						<TbDotsVertical className="text-xs" />
+					</button>
+
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Button
+								className="w-[24px] h-[24px] rounded-full border"
+								size="icon"
+								variant="ghost"
+							>
+								<span className="sr-only">Theme selector</span>
+								{!hydrated ? null : theme === "dark" ? (
+									<MoonIcon />
+								) : theme === "light" ? (
+									<SunIcon />
+								) : (
+									<LaptopIcon />
+								)}
+							</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent className="mt-2 mr-1">
+							<DropdownMenuLabel>Theme</DropdownMenuLabel>
+							<DropdownMenuSeparator />
+							<DropdownMenuItem asChild>
+								<button
+									type="button"
+									className="w-full"
+									onClick={() => setTheme("light")}
+									aria-selected={theme === "light"}
+								>
+									Light
+								</button>
+							</DropdownMenuItem>
+							<DropdownMenuItem asChild>
+								<button
+									type="button"
+									className="w-full"
+									onClick={() => setTheme("dark")}
+									aria-selected={theme === "dark"}
+								>
+									Dark
+								</button>
+							</DropdownMenuItem>
+							<DropdownMenuItem asChild>
+								<button
+									type="button"
+									className="w-full"
+									onClick={() => setTheme("system")}
+									aria-selected={theme === "system"}
+								>
+									System
+								</button>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
+				</div>
 			</div>
-			<DropdownMenu>
-				<DropdownMenuTrigger asChild>
-					<Button
-						className="w-10 h-10 rounded-full border"
-						size="icon"
-						variant="ghost"
-					>
-						<span className="sr-only">Theme selector</span>
-						{!hydrated ? null : theme === "dark" ? (
-							<MoonIcon />
-						) : theme === "light" ? (
-							<SunIcon />
-						) : (
-							<LaptopIcon />
-						)}
-					</Button>
-				</DropdownMenuTrigger>
-				<DropdownMenuContent className="mt-2">
-					<DropdownMenuLabel>Theme</DropdownMenuLabel>
-					<DropdownMenuSeparator />
-					<DropdownMenuItem asChild>
-						<button
-							type="button"
-							className="w-full"
-							onClick={() => setTheme("light")}
-							aria-selected={theme === "light"}
-						>
-							Light
-						</button>
-					</DropdownMenuItem>
-					<DropdownMenuItem asChild>
-						<button
-							type="button"
-							className="w-full"
-							onClick={() => setTheme("dark")}
-							aria-selected={theme === "dark"}
-						>
-							Dark
-						</button>
-					</DropdownMenuItem>
-					<DropdownMenuItem asChild>
-						<button
-							type="button"
-							className="w-full"
-							onClick={() => setTheme("system")}
-							aria-selected={theme === "system"}
-						>
-							System
-						</button>
-					</DropdownMenuItem>
-				</DropdownMenuContent>
-			</DropdownMenu>
-		</header>
+		</div>
 	);
-}
+};

@@ -9,13 +9,16 @@ import {
 } from "@remix-run/react";
 
 import { GlobalPendingIndicator } from "@/components/global-pending-indicator";
-import { Header } from "@/components/header";
 import {
 	ThemeSwitcherSafeHTML,
 	ThemeSwitcherScript,
 } from "@/components/theme-switcher";
 
 import "./globals.css";
+import { Sidebar } from "@/components/pages/Sidebar";
+import { SidebarProvider } from "@/components/pages/SidebarContext";
+
+import { Header } from "@/components/header";
 
 function App({ children }: { children: React.ReactNode }) {
 	return (
@@ -29,8 +32,14 @@ function App({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<GlobalPendingIndicator />
-				<Header />
-				{children}
+				<main>
+					<SidebarProvider>
+						<div className="flex h-screen overflow-hidden">
+							<Sidebar />
+							<main className="flex-1">{children}</main>
+						</div>
+					</SidebarProvider>
+				</main>
 				<ScrollRestoration />
 				<Scripts />
 			</body>
