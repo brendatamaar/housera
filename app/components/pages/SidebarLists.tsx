@@ -1,48 +1,45 @@
-import { TbPlus } from "react-icons/tb";
+import { TbArchive, TbFileCheck, TbFilePencil, TbHome, TbPencil, TbPlus, TbReload, TbUsers } from "react-icons/tb";
 import { SidebarAccordion } from "./SidebarAccordion";
 
 export const SidebarLists = () => {
   return (
-    <SidebarAccordion label="Lists" value="lists">
+    <SidebarAccordion label="My Listings" value="lists">
       <div className="h-2" />
       <a
         href="#"
-        className="flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium"
+        className="flex items-center gap-2 px-2 text-sm font-medium"
       >
-        <span>🎓</span> Recruiting
+        <TbUsers className="opacity-70" /> Ongoing Activities
       </a>
       <div className="h-2" />
       <a
         href="#"
-        className="flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium"
+        className="flex items-center gap-2 px-2 text-sm font-medium"
       >
-        <span>🚀</span> Startup Sales Pipeline
+        <TbFileCheck className="opacity-70" /> Listed
       </a>
       <div className="h-2" />
       <a
         href="#"
-        className="flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium"
+        className="flex items-center gap-2 px-2 text-sm font-medium"
       >
-        <span>🎉</span> Fundraising
+        <TbFilePencil className="opacity-70" /> Drafted
       </a>
       <div className="h-2" />
       <a
         href="#"
-        className="flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium"
+        className="flex items-center gap-2 px-2 text-sm font-medium"
       >
-        <span>🧩</span> Integrations
+        <TbReload className="opacity-70" /> Pending
       </a>
       <div className="h-2" />
       <a
         href="#"
-        className="flex items-center gap-2 px-2 py-1 rounded-md text-sm font-medium"
+        className="flex items-center gap-2 px-2 text-sm font-medium"
       >
-        <span>💼</span> Startup Program
+        <TbArchive className="opacity-70" /> Archive
       </a>
       <div className="h-2" />
-      <button className="flex items-center gap-2 px-2 py-1 rounded-md text-sm opacity-60 hover:opacity-80 transition">
-        <TbPlus /> Create list
-      </button>
     </SidebarAccordion>
   );
 };

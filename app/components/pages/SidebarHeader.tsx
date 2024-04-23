@@ -1,10 +1,9 @@
 import {
   TbBrain,
-  TbCaretDownFilled,
   TbLayoutSidebarLeftCollapse,
 } from "react-icons/tb";
 
-export const SidebarHeader = ({ toggleSidebar, collapseSidebar } : {toggleSidebar:any, collapseSidebar:any}) => {
+export const SidebarHeader = ({ toggleSidebar, collapseSidebar }: { toggleSidebar: any, collapseSidebar: any }) => {
   return (
     <div className="flex justify-between items-center px-2">
       <div className="flex items-center gap-2">
@@ -12,8 +11,7 @@ export const SidebarHeader = ({ toggleSidebar, collapseSidebar } : {toggleSideba
           <TbBrain />
         </div>
         <button className="text-sm font-semibold flex items-center gap-1">
-          superfood.io
-          <TbCaretDownFilled />
+          housera
         </button>
       </div>
       <button

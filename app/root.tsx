@@ -18,8 +18,6 @@ import "./globals.css";
 import { Sidebar } from "@/components/pages/Sidebar";
 import { SidebarProvider } from "@/components/pages/SidebarContext";
 
-import { Header } from "@/components/header";
-
 function App({ children }: { children: React.ReactNode }) {
 	return (
 		<ThemeSwitcherSafeHTML lang="en">

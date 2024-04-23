@@ -20,7 +20,7 @@ export const meta: MetaFunction = () => {
 	];
 };
 
-export default function Index() {
+export default function Dashboard() {
 	const {
 		setSidebarOpen,
 		isSidebarOpen,
@@ -55,7 +55,7 @@ export default function Index() {
 						</div>
 					) : null}
 					<div className="flex items-center gap-1">
-						<TbLayoutDashboard /> <span className="font-semibold">Dashboard</span>
+						<TbLayoutDashboard /> <span className="font-semibold">Home</span>
 					</div>
 				</div>
 			</Header>

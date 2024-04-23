@@ -9,11 +9,19 @@ import {
   TbCheckbox,
   TbMail,
   TbNotes,
+  TbLayoutDashboard,
+  TbHeartStar,
+  TbEye,
+  TbBuildingCommunity,
+  TbReportMoney,
+  TbBuilding,
+  TbShoppingCart,
+  TbCurrencyDollar
 } from "react-icons/tb";
 
 import { SidebarHeader } from "./SidebarHeader";
 import { SidebarSearch } from "./SidebarSearch";
-import { SidebarRecords } from "./SidebarRecords";
+import { SidebarRent } from "./SidebarRent";
 import { SidebarLists } from "./SidebarLists";
 import { Sheet } from "./Sheet";
 import { useContext, useState } from "react";
@@ -23,19 +31,25 @@ const SidebarQuickActions = () => {
   return (
     <div className="flex flex-col gap-3">
       <a href="#" className="flex items-center gap-2 px-2 text-sm font-medium">
+        <TbLayoutDashboard className="opacity-70" /> Dashboard
+      </a>
+      <a href="#" className="flex items-center gap-2 px-2 text-sm font-medium">
+        <TbBuilding className="opacity-70" /> List My Property
+      </a>
+      <a href="#" className="flex items-center gap-2 px-2 text-sm font-medium">
+        <TbHeartStar className="opacity-70" /> Favorite
+      </a>
+      <a href="#" className="flex items-center gap-2 px-2 text-sm font-medium">
+        <TbEye className="opacity-70" /> Recently Viewed
+      </a>
+      <a href="#" className="flex items-center gap-2 px-2 text-sm font-medium">
         <TbBell className="opacity-70" /> Notifications
       </a>
       <a href="#" className="flex items-center gap-2 px-2 text-sm font-medium">
-        <TbCheckbox className="opacity-70" /> Tasks
+        <TbShoppingCart className="opacity-70" /> Community Marketplace
       </a>
       <a href="#" className="flex items-center gap-2 px-2 text-sm font-medium">
-        <TbNotes className="opacity-70" /> Notes
-      </a>
-      <a href="#" className="flex items-center gap-2 px-2 text-sm font-medium">
-        <TbMail className="opacity-70" /> Emails
-      </a>
-      <a href="#" className="flex items-center gap-2 px-2 text-sm font-medium">
-        <TbChartBar className="opacity-70" /> Reports
+        <TbCurrencyDollar className="opacity-70" /> Payment Methods
       </a>
     </div>
   );
@@ -75,7 +89,7 @@ export const Sidebar = () => {
           <div className="h-4" />
           <Accordion.Root type="multiple" defaultValue={["lists", "records"]}>
             <div className="p-2">
-              <SidebarRecords />
+              <SidebarRent />
             </div>
             <div className="h-4" />
             <div className="p-2">
